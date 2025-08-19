@@ -1,0 +1,260 @@
+coords:
+  time:
+    dims:
+    - time
+    dtype: datetime64[ns]
+  xh:
+    dims:
+    - xh
+    dtype: float64
+  yh:
+    dims:
+    - yh
+    dtype: float64
+  z_l:
+    dims:
+    - z_l
+    dtype: float64
+  xq:
+    dims:
+    - xq
+    dtype: float64
+    long_name: q point nominal longitude
+    units: degrees_east
+    cartesian_axis: X
+  yq:
+    dims:
+    - yq
+    dtype: float64
+    long_name: q point nominal latitude
+    units: degrees_north
+    cartesian_axis: Y
+variables:
+  o2:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Oxygen
+    units: mol kg-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  dic:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Dissolved Inorganic Carbon
+    units: mol kg-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  chl:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Chlorophyll
+    units: ug kg-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  pp:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Primary Carbon Production by Total Phytoplankton
+    units: mol m-3 s-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: tendency_of_mole_concentration_of_particulate_organic_matter_expressed_as_carbon_in_sea_water_due_to_net_primary_production
+  temp:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Potential Temperature
+    units: degC
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  salt:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Salinity
+    units: psu
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  SST:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sea Surface Temperature
+    units: degC
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  SSS:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sea Surface Salinity
+    units: psu
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  taux:
+    dims:
+    - time
+    - yh
+    - xq
+    dtype: float32
+    long_name: Zonal surface stress from ocean interactions with atmos and ice
+    units: Pa
+    cell_methods: 'yh:mean xq:point time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_x_stress
+    interp_method: none
+  tauy:
+    dims:
+    - time
+    - yq
+    - xh
+    dtype: float32
+    long_name: Meridional surface stress ocean interactions with atmos and ice
+    units: Pa
+    cell_methods: 'yq:point xh:mean time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_y_stress
+    interp_method: none
+  SW:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Shortwave radiation flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: net_downward_shortwave_flux_at_sea_water_surface
+  LW:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Longwave radiation flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_net_downward_longwave_flux
+  latent:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Latent heat flux into ocean due to fusion and evaporation (negative
+      means ocean heat loss)
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  sensible:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sensible heat flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_sensible_heat_flux
+  PRCmE:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Net surface water flux (precip+melt+lrunoff+ice calving-evap)
+    units: kg m-2 s-1
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: water_flux_into_sea_water
+  SA:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float64
+  CT:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float64
+    units: degC
+    notes: 'Computed using TEOS-10: gsw.CT_from_t(SA, temp, pressure)'
+  O2sat:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float64
+    units: mol kg-1
+  AOU:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float64
+    units: mol kg-1
+  Qnet:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+io_hints:
+  suggested_chunks:
+    time: 128
+    z_l: 50
+    yh: 9
+    xh: 9
+    xq: 128
+    yq: 128
+  compression:
+    zlib: true
+    complevel: 4

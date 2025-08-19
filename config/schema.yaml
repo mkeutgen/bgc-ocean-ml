@@ -1,0 +1,117 @@
+conventions:
+  cf_version: CF-1.x
+dataset:
+  title: control
+  source_file_example: ds_mini.nc
+  associated_files: 'area_t: hist_control_ocean_static.nc'
+  grid_type: regular
+  grid_tile: N/A
+coords:
+  time:
+    dims:
+    - time
+    dtype: datetime64[ns]
+  xh:
+    dims:
+    - xh
+    dtype: float64
+  yh:
+    dims:
+    - yh
+    dtype: float64
+  z_l:
+    dims:
+    - z_l
+    dtype: float64
+  xq:
+    dims:
+    - xq
+    dtype: float64
+    long_name: q point nominal longitude
+    units: degrees_east
+    cartesian_axis: X
+  yq:
+    dims:
+    - yq
+    dtype: float64
+    long_name: q point nominal latitude
+    units: degrees_north
+    cartesian_axis: Y
+variables:
+  CT:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float64
+    units: degC
+    long_name: Conservative Temperature
+    notes: 'Computed using TEOS-10: gsw.CT_from_t(SA, in-situ temperature, pressure).
+      In practice, derived via xr.apply_ufunc(gsw.CT_from_t, SA, temp, pressure, input_core_dims=[[''z_l'',''yh'',''xh'']]*3,
+      output_core_dims=[[''z_l'',''yh'',''xh'']], vectorize=True, dask=''parallelized'',
+      output_dtypes=[float])'
+  o2:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    units: mol kg-1
+    long_name: Dissolved Oxygen
+    notes: Standardized to mol/kg for consistency across biogeochemical tracers
+  dic:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    units: mol kg-1
+    long_name: Dissolved Inorganic Carbon
+    notes: Standardized to mol/kg for consistency across biogeochemical tracers
+  Qnet:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    units: W m-2
+    long_name: Net Surface Heat Flux (positive into ocean)
+    notes: Qnet = SW - LW - latent - sensible
+  taux:
+    dims:
+    - time
+    - yh
+    - xq
+    dtype: float32
+    long_name: Zonal surface stress from ocean interactions with atmos and ice
+    units: Pa
+    cell_methods: 'yh:mean xq:point time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_x_stress
+    interp_method: none
+  tauy:
+    dims:
+    - time
+    - yq
+    - xh
+    dtype: float32
+    long_name: Meridional surface stress ocean interactions with atmos and ice
+    units: Pa
+    cell_methods: 'yq:point xh:mean time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_y_stress
+    interp_method: none
+io_hints:
+  suggested_chunks:
+    time: 128
+    z_l: 50
+    yh: 128
+    xh: 128
+    xq: 128
+    yq: 128
+  compression:
+    zlib: true
+    complevel: 4
