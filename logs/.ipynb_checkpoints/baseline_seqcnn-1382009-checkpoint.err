@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/scripts/train_multitarget.py", line 9, in <module>
+    from loaders.ts_windows_singlecell import make_dataloaders
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/loaders/ts_windows_singlecell.py", line 18
+    with open(paths_config_path, "r") as f:
+    ^^^^
+IndentationError: expected an indented block after function definition on line 17
+E0820 11:41:47.289000 2165713 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 2165717) of binary: /home/mk0964/.conda/envs/bgc-ocean-ml/bin/python
+Traceback (most recent call last):
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/train_multitarget.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-20_11:41:47
+  host      : tiger-i04g2
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2165717)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,47 @@
+experiment:
+  name: baseline_seqcnn_multitarget
+  description: >
+    Simple spatio-temporal CNN baseline trained on Nano Surf 3-year dataset
+    to predict [CT, DIC, O2] from [Qnet, taux, tauy].
+
+  dataset:
+    train_path: "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/prototypes_dataset/ds_nano_surf_three_years.nc"
+    variables:
+      inputs: ["Qnet", "taux", "tauy"]
+      targets: ["CT", "dic", "o2"]
+
+  windows:
+    length: 64        # how many timesteps per training sample (64 days ~ 2 months)
+    stride: 1         # shift between windows (1 = every day)
+    sampling: random  # or "sequential"
+
+  dataloader:
+    name: ts_windows_singlecell
+    dataset_path_key: nano_surf_three_years   # must match a key in paths_config.json
+    batch_size: 16
+    num_workers: 4
+    shuffle: true
+
+  model:
+    name: simple_spatiotemporal_cnn
+    in_channels: 3     # Qnet, taux, tauy 
+    hidden: 32
+    out_channels: 3    # CT, DIC, O2
+    kernel_size: 3
+    num_tblocks: 2
+    dropout: 0.1
+
+  optimizer:
+    name: adam
+    lr: 0.001
+    weight_decay: 1e-5
+
+  scheduler:
+    name: cosine
+    t_max: 20   # epochs
+
+  training:
+    epochs: 50
+    log_interval: 10
+    save_every: 10
+    val_every: 1

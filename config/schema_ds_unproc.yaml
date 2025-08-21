@@ -1,0 +1,910 @@
+conventions:
+  cf_version: CF-1.x
+dataset:
+  title: full_9km_monthly
+  grid_type: regular
+  spatial_resolution: 9 km
+  temporal_resolution: monthly
+  grid_shape:
+    xh: 362
+    yh: 362
+    z_l: 75
+    z_i: 76
+    time: 31
+    nv: 2
+    xq: 363
+    yq: 363
+coords:
+  xh:
+    dims:
+    - xh
+    dtype: float64
+    long_name: h point nominal longitude
+    units: degrees_east
+    cartesian_axis: X
+  yh:
+    dims:
+    - yh
+    dtype: float64
+    long_name: h point nominal latitude
+    units: degrees_north
+    cartesian_axis: Y
+  z_l:
+    dims:
+    - z_l
+    dtype: float64
+    long_name: Depth at cell center
+    units: meters
+    cartesian_axis: Z
+    positive: down
+    edges: z_i
+  z_i:
+    dims:
+    - z_i
+    dtype: float64
+    long_name: Depth at interface
+    units: meters
+    cartesian_axis: Z
+    positive: down
+  time:
+    dims:
+    - time
+    dtype: object
+    long_name: time
+    cartesian_axis: T
+    calendar_type: NOLEAP
+    bounds: time_bnds
+  nv:
+    dims:
+    - nv
+    dtype: float64
+    long_name: vertex number
+    units: none
+    cartesian_axis: N
+  xq:
+    dims:
+    - xq
+    dtype: float64
+    long_name: q point nominal longitude
+    units: degrees_east
+    cartesian_axis: X
+  yq:
+    dims:
+    - yq
+    dtype: float64
+    long_name: q point nominal latitude
+    units: degrees_north
+    cartesian_axis: Y
+variables:
+  thkcello:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Cell Thickness
+    units: m
+    cell_methods: 'area:mean z_l:sum yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: cell_thickness
+  rho_dzt:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: ocean t-cell rho*thickness
+    units: (kg/m^3)*m
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  chl:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Chlorophyll
+    units: ug kg-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  htotal:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: H+ ion concentration
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  no3:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Nitrate
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  o2:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Oxygen
+    units: mol kg-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  ndi:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Diazotroph Nitrogen
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nlg:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Large Phytoplankton Nitrogen
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nsm:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Small Phytoplankton Nitrogen
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nbact:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: bacterial
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nsmz:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Small Zooplankton Nitrogen
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nmdz:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Medium-sized zooplankton Nitrogen
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nlgz:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Large Zooplankton Nitrogen
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nvmmdz:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Vertically Migrating Medium Zooplankton Nitrogen (Biomass)
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nvmlgz:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Vertically Migrating Large Zooplankton Nitrogen (Biomass)
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  alk:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Alkalinity
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  dic:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Dissolved Inorganic Carbon
+    units: mol kg-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  fed:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Dissolved Iron
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  ldon:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: labile DON
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  ndet:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: ndet
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  nh4:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Ammonia
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  po4:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Phosphate
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  srdon:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Semi-Refractory DON
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  sldon:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Semilabile DON
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  sio4:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Silicate
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  cadet_calc:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Detrital CaCO3
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  cadet_arag:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Detrital CaCO3
+    units: mol/kg
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  expc:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sinking Particulate Organic Carbon Flux
+    units: mol m-2 s-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: sinking_mole_flux_of_particulate_organic_matter_expressed_as_carbon_in_sea_water
+  poc:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Mole Concentration of Particulate Organic Matter expressed as Carbon
+      in sea water
+    units: mol m-3
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: mole_concentration_of_particulate_organic_matter_expressed_as_carbon_in_sea_water
+  pp:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Primary Carbon Production by Total Phytoplankton
+    units: mol m-3 s-1
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: tendency_of_mole_concentration_of_particulate_organic_matter_expressed_as_carbon_in_sea_water_due_to_net_primary_production
+  irr_inst:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Instantaneous Light
+    units: W m-2
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  average_T1:
+    dims:
+    - time
+    dtype: datetime64[ns]
+    long_name: Start time for average period
+  average_T2:
+    dims:
+    - time
+    dtype: datetime64[ns]
+    long_name: End time for average period
+  average_DT:
+    dims:
+    - time
+    dtype: timedelta64[ns]
+    long_name: Length of average period
+  time_bnds:
+    dims:
+    - time
+    - nv
+    dtype: timedelta64[ns]
+    long_name: time axis boundaries
+    calendar: NOLEAP
+  temp:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Potential Temperature
+    units: degC
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  salt:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Salinity
+    units: psu
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  u:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xq
+    dtype: float32
+    long_name: Zonal velocity
+    units: m s-1
+    cell_methods: 'z_l:mean yh:mean xq:point time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    interp_method: none
+  v:
+    dims:
+    - time
+    - z_l
+    - yq
+    - xh
+    dtype: float32
+    long_name: Meridional velocity
+    units: m s-1
+    cell_methods: 'z_l:mean yq:point xh:mean time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    interp_method: none
+  dzRegrid:
+    dims:
+    - time
+    - z_i
+    - yh
+    - xh
+    dtype: float32
+    long_name: Change in interface height due to ALE regridding
+    units: m
+    cell_methods: 'area:mean z_i:point yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  rhopot0:
+    dims:
+    - time
+    - z_l
+    - yh
+    - xh
+    dtype: float32
+    long_name: Potential density referenced to surface
+    units: kg m-3
+    cell_methods: 'area:mean z_l:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  geolat:
+    dims:
+    - yh
+    - xh
+    dtype: float32
+    long_name: Latitude of tracer (T) points
+    units: degrees_north
+    cell_methods: 'time: point'
+  geolon:
+    dims:
+    - yh
+    - xh
+    dtype: float32
+    long_name: Longitude of tracer (T) points
+    units: degrees_east
+    cell_methods: 'time: point'
+  geolat_c:
+    dims:
+    - yq
+    - xq
+    dtype: float32
+    long_name: Latitude of corner (Bu) points
+    units: degrees_north
+    cell_methods: 'time: point'
+    interp_method: none
+  geolon_c:
+    dims:
+    - yq
+    - xq
+    dtype: float32
+    long_name: Longitude of corner (Bu) points
+    units: degrees_east
+    cell_methods: 'time: point'
+    interp_method: none
+  geolat_u:
+    dims:
+    - yh
+    - xq
+    dtype: float32
+    long_name: Latitude of zonal velocity (Cu) points
+    units: degrees_north
+    cell_methods: 'time: point'
+    interp_method: none
+  geolon_u:
+    dims:
+    - yh
+    - xq
+    dtype: float32
+    long_name: Longitude of zonal velocity (Cu) points
+    units: degrees_east
+    cell_methods: 'time: point'
+    interp_method: none
+  geolat_v:
+    dims:
+    - yq
+    - xh
+    dtype: float32
+    long_name: Latitude of meridional velocity (Cv) points
+    units: degrees_north
+    cell_methods: 'time: point'
+    interp_method: none
+  geolon_v:
+    dims:
+    - yq
+    - xh
+    dtype: float32
+    long_name: Longitude of meridional velocity (Cv) points
+    units: degrees_east
+    cell_methods: 'time: point'
+    interp_method: none
+  SST:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sea Surface Temperature
+    units: degC
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  SSS:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sea Surface Salinity
+    units: psu
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  SSH:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sea Surface Height
+    units: m
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  zos:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sea surface height above geoid
+    units: m
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: sea_surface_height_above_geoid
+  SSU:
+    dims:
+    - time
+    - yh
+    - xq
+    dtype: float32
+    long_name: Sea Surface Zonal Velocity
+    units: m s-1
+    cell_methods: 'yh:mean xq:point time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    interp_method: none
+  SSV:
+    dims:
+    - time
+    - yq
+    - xh
+    dtype: float32
+    long_name: Sea Surface Meridional Velocity
+    units: m s-1
+    cell_methods: 'yq:point xh:mean time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    interp_method: none
+  taux:
+    dims:
+    - time
+    - yh
+    - xq
+    dtype: float32
+    long_name: Zonal surface stress from ocean interactions with atmos and ice
+    units: Pa
+    cell_methods: 'yh:mean xq:point time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_x_stress
+    interp_method: none
+  tauy:
+    dims:
+    - time
+    - yq
+    - xh
+    dtype: float32
+    long_name: Meridional surface stress ocean interactions with atmos and ice
+    units: Pa
+    cell_methods: 'yq:point xh:mean time: mean'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_y_stress
+    interp_method: none
+  SW:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Shortwave radiation flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: net_downward_shortwave_flux_at_sea_water_surface
+  SW_max:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Shortwave radiation flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: max'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: net_downward_shortwave_flux_at_sea_water_surface
+  LW:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Longwave radiation flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_net_downward_longwave_flux
+  latent:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Latent heat flux into ocean due to fusion and evaporation (negative
+      means ocean heat loss)
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  sensible:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Sensible heat flux into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_sensible_heat_flux
+  MLD_003:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Mixed layer depth (delta rho = 0.03)
+    units: m
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  MLD_003_max:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Mixed layer depth (delta rho = 0.03)
+    units: m
+    cell_methods: 'area:mean yh:mean xh:mean time: max'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  MLD_0125:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Mixed layer depth (delta rho = 0.125)
+    units: m
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  evap:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Evaporation/condensation at ocean surface (evaporation is negative)
+    units: kg m-2 s-1
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: water_evaporation_flux
+  precip:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Liquid + frozen precipitation into ocean
+    units: kg m-2 s-1
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  PRCmE:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Net surface water flux (precip+melt+lrunoff+ice calving-evap)
+    units: kg m-2 s-1
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: water_flux_into_sea_water
+  ePBL_h_ML:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Surface boundary layer depth
+    units: m
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  hfrunoffds:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Heat content (relative to 0C) of liquid+solid runoff into ocean
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: temperature_flux_due_to_runoff_expressed_as_heat_flux_into_sea_water
+  net_heat_coupler:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Surface ocean heat flux from SW+LW+latent+sensible+seaice_melt_heat
+      (via the coupler)
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+  net_heat_surface:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Surface ocean heat flux from SW+LW+lat+sens+mass transfer+frazil+restore+seaice_melt_heat
+      or flux adjustments
+    units: W m-2
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+    standard_name: surface_downward_heat_flux_in_sea_water
+  salt_flux:
+    dims:
+    - time
+    - yh
+    - xh
+    dtype: float32
+    long_name: Net salt flux into ocean at surface (restoring + sea-ice)
+    units: kg m-2 s-1
+    cell_methods: 'area:mean yh:mean xh:mean time: mean'
+    cell_measures: 'area: area_t'
+    time_avg_info: average_T1,average_T2,average_DT
+io_hints:
+  suggested_chunks:
+    xh: 128
+    yh: 128
+    z_l: 75
+    z_i: 76
+    time: 31
+    nv: 2
+    xq: 128
+    yq: 128
+  compression:
+    zlib: true
+    complevel: 4

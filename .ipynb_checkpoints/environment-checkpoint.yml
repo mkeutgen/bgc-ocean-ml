@@ -29,6 +29,10 @@ dependencies:
   # Metrics / analysis
   - scikit-learn
 
+  # HPC & config
+  - hydra-core
+  - omegaconf
+
   # Jupyter / Notebooks
   - jupyter
   - notebook

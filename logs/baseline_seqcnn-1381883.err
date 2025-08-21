@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/scripts/train_multitarget.py", line 107, in <module>
+    main(args)
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/scripts/train_multitarget.py", line 36, in main
+    exp = load_cfg(args.experiment)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/scripts/train_multitarget.py", line 14, in load_cfg
+    return yaml.safe_load(f)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/yaml/__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/yaml/composer.py", line 39, in get_single_node
+    if not self.check_event(StreamEndEvent):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/yaml/parser.py", line 171, in parse_document_start
+    raise ParserError(None, None,
+yaml.parser.ParserError: expected '<document start>', but found '<block mapping start>'
+  in "config/experiments/baseline_seqcnn_multitarget.yaml", line 6, column 1
+E0820 11:04:07.830000 2135421 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 2135423) of binary: /home/mk0964/.conda/envs/bgc-ocean-ml/bin/python
+Traceback (most recent call last):
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/train_multitarget.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-20_11:04:07
+  host      : tiger-i04g2
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2135423)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

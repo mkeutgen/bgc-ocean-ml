@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/scripts/train_multitarget.py", line 107, in <module>
+    main(args)
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/scripts/train_multitarget.py", line 39, in main
+    train_dl, val_dl, stats = make_dataloaders(args.paths_config, exp)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/gpfs/GEOCLIM/LRGROUP/maximek/INMOS/bgc-ocean-ml/loaders/ts_windows_singlecell.py", line 125, in make_dataloaders
+    ds_path = paths[exp_cfg["dataset_path_key"]]
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'dataset_path_key'
+E0820 10:55:09.720000 2120852 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 2120854) of binary: /home/mk0964/.conda/envs/bgc-ocean-ml/bin/python
+Traceback (most recent call last):
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mk0964/.conda/envs/bgc-ocean-ml/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/train_multitarget.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-20_10:55:09
+  host      : tiger-i04g2
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2120854)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

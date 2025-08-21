@@ -1,3 +1,16 @@
+conventions:
+  cf_version: CF-1.x
+dataset:
+  title: full_9km_monthly
+  grid_type: regular
+  spatial_resolution: 9 km
+  temporal_resolution: monthly
+  grid_shape:
+    time: 365
+    yh: 9
+    xh: 9
+    xq: 363
+    yq: 363
 coords:
   time:
     dims:
@@ -215,6 +228,7 @@ variables:
     - xh
     dtype: float64
     units: degC
+    long_name: Conservative Temperature
     notes: 'Computed using TEOS-10: gsw.CT_from_t(SA, temp, pressure)'
   O2sat:
     dims:
@@ -236,6 +250,7 @@ variables:
     - yh
     - xh
     dtype: float32
+    notes: Qnet = SW - LW - latent - sensible
 io_hints:
   suggested_chunks:
     time: 128

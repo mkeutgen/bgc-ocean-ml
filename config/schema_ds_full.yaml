@@ -7,9 +7,9 @@ dataset:
   temporal_resolution: monthly
   grid_shape:
     time: 2190
-    z_l: 50
-    yh: 270
-    xh: 180
+    z_l: 58
+    yh: 362
+    xh: 362
     xq: 363
     yq: 363
 coords:
@@ -266,7 +266,7 @@ variables:
 io_hints:
   suggested_chunks:
     time: 128
-    z_l: 50
+    z_l: 58
     yh: 128
     xh: 128
     xq: 128
